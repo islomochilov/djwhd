@@ -103,7 +103,7 @@ class ContactMixedAPIView(APIView):
     def put(self,request,pk):
         try:
             contact=Contact.objects.get(pk=pk)
-            serializer=ContactSerializer(Contact,data=request.data)
+            serializer=ContactSerializer(contact,data=request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data)
@@ -113,7 +113,7 @@ class ContactMixedAPIView(APIView):
             return Response({'status':'bunday id li contact mavjud emas'})
 
 
-    def putch(self,request,pk):
+    def patch(self,request,pk):
         try:
             contact=Contact.objects.get(pk=pk)
             serializer=ContactSerializer(contact, data=request.data,partial=True)
